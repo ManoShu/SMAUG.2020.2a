@@ -9,6 +9,7 @@ FUNDO_TELA = (0, 0, 0)  # RGB preto
 TELA_INICIO = 1
 TELA_JOGO = 2
 TELA_SCORE = 3
+TELA_CREDITOS = 4
 
 
 # source: https://stackoverflow.com/a/54229246

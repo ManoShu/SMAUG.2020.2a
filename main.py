@@ -69,18 +69,33 @@ def main():
                             asteroide.kill()
                         som_inicio.play()
 
-                    elif tela_corrente == TELA_SCORE:
+                    elif tela_corrente == TELA_SCORE or tela_corrente == TELA_CREDITOS:
                         tela_corrente = TELA_INICIO
+                if event.key == pygame.K_c and tela_corrente == TELA_INICIO:
+                    tela_corrente = TELA_CREDITOS
 
         tela.fill(FUNDO_TELA)
         tela.blit(imagem_fundo, (0, 0))
 
         if tela_corrente == TELA_INICIO:
             desenhar_texto(tela, "Slugan 1.5", 92, LARGURA // 2, 100)
-            desenhar_texto(tela, "Desvie dos asteróides!", 42, LARGURA // 2, 300)
-            desenhar_texto(tela, "[<- -> ou A/D] Movimento", 36, LARGURA // 2, 400)
+            desenhar_texto(tela, "Desvie dos asteróides!", 42, LARGURA // 2, 250)
+            desenhar_texto(tela, "[<- -> ou A/D] Movimento", 36, LARGURA // 2, 350)
+            desenhar_texto(tela, "[C] Créditos", 36, LARGURA // 2, 400)
             desenhar_texto(tela, "[ESC] Sair", 36, LARGURA // 2, 450)
             desenhar_texto(tela, "Pressione [ESPAÇO] para iniciar", 42, LARGURA // 2, 550)
+        elif tela_corrente == TELA_CREDITOS:
+            desenhar_texto(tela, "Créditos", 48, LARGURA // 2, 50)
+            desenhar_texto(tela, "Fernando Rodrigues da Costa", 36, LARGURA // 2, 150)
+            desenhar_texto(tela, "Pedro Henrique Giacomini Tavares", 36, LARGURA // 2, 200)
+
+            desenhar_texto(tela, "Assets:", 24, LARGURA // 2, 300)
+            desenhar_texto(tela, "ufoGreen.png / meteorBrown_med3.png:", 24, LARGURA // 2, 330)
+            desenhar_texto(tela, "https://www.kenney.nl/assets/space-shooter-redux", 24, LARGURA // 2, 360)
+            desenhar_texto(tela, "back_3.png:", 24, LARGURA // 2, 420)
+            desenhar_texto(tela, "https://opengameart.org/content/space-background-1", 24, LARGURA // 2, 450)
+
+            desenhar_texto(tela, "Pressione [ESPAÇO] para voltar", 42, LARGURA // 2, 550)
         elif tela_corrente == TELA_JOGO:
             if random() < chance:
                 novo_asteroide = Asteroide()
