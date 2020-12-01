@@ -1,3 +1,4 @@
+from os import path
 from random import random, randrange
 import pygame
 
@@ -13,7 +14,9 @@ def desenhar_texto(surface, texto, tamanho, x, y):
     surface.blit(surface_texto, rect_texto)
 
 
-def colisao_hitbox(jogador, asteroide):
+def colisao_hitbox(jogador: pygame.sprite.Sprite, asteroide: pygame.sprite.Sprite) -> bool:
+    jogador: Jogador
+    asteroide: Asteroide
     return jogador.hitbox.colliderect(asteroide.hitbox)
 
 
@@ -27,7 +30,7 @@ def main():
 
     rodando = True
 
-    imagem_fundo = pygame.image.load("back_3.png").convert()
+    imagem_fundo = pygame.image.load(path.join(CAMINHO_EXECUTAVEL, "back_3.png")).convert()
 
     tela_corrente = TELA_INICIO
 
@@ -36,9 +39,12 @@ def main():
     jogador = Jogador()
     grupo_sprites.add(jogador)
 
-    som_inicio = pygame.mixer.Sound("Pickup_Coin12.wav")
-    som_score = pygame.mixer.Sound("Pickup_Coin11.wav")
-    som_gameover = pygame.mixer.Sound("Explosion2.wav")
+    som_inicio = pygame.mixer.Sound(path.join(CAMINHO_EXECUTAVEL, "Pickup_Coin12.wav"))
+    som_score = pygame.mixer.Sound(path.join(CAMINHO_EXECUTAVEL, "Pickup_Coin11.wav"))
+    som_gameover = pygame.mixer.Sound(path.join(CAMINHO_EXECUTAVEL, "Explosion2.wav"))
+
+    pygame.mixer.music.load(path.join(CAMINHO_EXECUTAVEL, "musica_loop.ogg"))
+    pygame.mixer.music.play(loops=-1)
 
     score = 0
     chance = 0.01

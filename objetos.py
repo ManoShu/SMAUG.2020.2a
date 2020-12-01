@@ -1,9 +1,10 @@
 from random import randrange
+from os import path
 
 import pygame
 
 from animacao import ControleAnimacao
-from constantes import LARGURA, FPS
+from constantes import LARGURA, CAMINHO_EXECUTAVEL
 from spritesheet import SpriteSheet
 
 
@@ -11,12 +12,12 @@ class Jogador(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        imagens_slugan = SpriteSheet.generate("slugan_idle.png", 30, 1)
+        imagens_slugan = SpriteSheet.generate(path.join(CAMINHO_EXECUTAVEL, "slugan_idle.png"), 30, 1)
         self.animacao_idle = ControleAnimacao(imagens_slugan, 1 / 30, True)
 
         self.image = self.animacao_idle.get_image()
         self.rect = self.image.get_rect()
-        # usando metada do tamanho da imagem como hitbox
+        # usando um quarto do tamanho da imagem como hitbox
         self.hitbox = pygame.Rect((0, 0), (self.rect.width // 4, self.rect.height // 4))
 
     def update(self):
@@ -43,7 +44,7 @@ class Asteroide(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("meteorBrown_med3.png").convert_alpha()
+        self.image = pygame.image.load(path.join(CAMINHO_EXECUTAVEL, "meteorBrown_med3.png")).convert_alpha()
         self.rect = self.image.get_rect()
         self.hitbox = pygame.Rect((0, 0), (self.rect.width // 2, self.rect.height // 2))
 
